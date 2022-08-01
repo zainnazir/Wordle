@@ -1,4 +1,7 @@
 '''
+
+#this is a comment to see if this shitter works
+
 Wordle Rules:
  Guess a five-letter word in six attempts.
  Each time you guess, you're told which of your chosen letters are in the target word, and whether they are in the right place
