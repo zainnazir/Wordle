@@ -1,0 +1,40 @@
+import os
+import colorama
+from colorama import Fore, Back, Style
+
+os.system('color 7') #white
+
+
+word = []
+word.append("PIANO")
+letters=[]
+
+for i in range(0,len(word[0])):
+    letters.append(word[0][i])
+
+print(letters)
+
+userInitialGuess = str(input("Guess #1: ")).upper()
+while len(userInitialGuess) != 5:
+    print("this word is invalid!")
+    userInitialGuess = str(input("Guess #1: ")).upper()
+
+move = []
+move.append(userInitialGuess)
+lettersOfGuess=[]
+
+for x in range(0,len(move[0])):
+    lettersOfGuess.append(move[0][x])
+
+print(lettersOfGuess)
+
+#########################################################
+
+if letters[0] == lettersOfGuess[0]:
+    #print(Fore.RED + lettersOfGuess[0])
+    from colorama import Fore, Back, Style
+    print(Fore.GREEN + lettersOfGuess[0])
+else:
+    print("this shit doesnt work!")
+
+print(Style.RESET_ALL)
