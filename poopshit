@@ -1,40 +1,51 @@
 import os
 import colorama
 from colorama import Fore, Back, Style
-
+from wordlist_helper import getWordList
 os.system('color 7') #white
 
+def wordleprinter(letters, lettersofGuess):
+    guesses=[]
+    for i in range(0, len(letters)):
+        if letters[i].upper() == lettersOfGuess[i].upper():
+            from colorama import Fore, Back, Style
+            print(Back.GREEN + lettersOfGuess[i].upper(), end = " ")
+        elif lettersOfGuess[i] in letters and lettersOfGuess:
+            from colorama import Fore, Back, Style
+            print(Back.YELLOW + lettersOfGuess[i].upper(), end = " ")
+        else:
+            from colorama import Fore, Back, Style
+            print(Back.RED + lettersOfGuess[i].upper(), end = " ")
+    print()
 
-word = []
-word.append("PIANO")
-letters=[]
+if __name__ == "__main__":
+    bigwordlist=[]
+    bigwordlist = getWordList()
+    word = []
+    word.append("MOTTO")
+    letters=[]
+    print("Welcome to Wordle!")
+    print("Begin By Typing a 5-Letter Word...")
+    for i in range(0,len(word[0])):
+        letters.append(word[0][i].lower())
+    #print(letters)
+    for z in range(1,7):
+        userInitialGuess = str(input(Back.BLUE + "Guess " + str(z) + ": ")).lower()
+        while len(userInitialGuess) != 5 or (userInitialGuess not in bigwordlist):
+            print("this word is invalid!")
+            userInitialGuess = str(input(Back.BLUE + "Guess " + str(z) + ": ")).lower()
+        move = []
+        move.append(userInitialGuess)
+        lettersOfGuess=[]
+        for x in range(0,len(move[0])):
+            lettersOfGuess.append(move[0][x].lower())
+            #print(lettersOfGuess)
 
-for i in range(0,len(word[0])):
-    letters.append(word[0][i])
-
-print(letters)
-
-userInitialGuess = str(input("Guess #1: ")).upper()
-while len(userInitialGuess) != 5:
-    print("this word is invalid!")
-    userInitialGuess = str(input("Guess #1: ")).upper()
-
-move = []
-move.append(userInitialGuess)
-lettersOfGuess=[]
-
-for x in range(0,len(move[0])):
-    lettersOfGuess.append(move[0][x])
-
-print(lettersOfGuess)
-
+        wordleprinter(letters,lettersOfGuess)
+        if letters ==lettersOfGuess:
+            print("You Got the Word!")
+            break
+        if z==6 and letters!=lettersOfGuess:
+            print("You a Dumbass")
+    print(Style.RESET_ALL)
 #########################################################
-
-if letters[0] == lettersOfGuess[0]:
-    #print(Fore.RED + lettersOfGuess[0])
-    from colorama import Fore, Back, Style
-    print(Fore.GREEN + lettersOfGuess[0])
-else:
-    print("this shit doesnt work!")
-
-print(Style.RESET_ALL)
